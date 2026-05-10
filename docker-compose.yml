@@ -1,0 +1,24 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cvprojects_app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    restart: unless-stopped
+
+  tailwind:
+    image: node:20-alpine
+    container_name: cvprojects_tailwind
+    working_dir: /workspace
+    command: sh -c "npm install && npm run tw:watch"
+    volumes:
+      - ./:/workspace
+      - tailwind_node_modules:/workspace/node_modules
+    restart: unless-stopped
+
+volumes:
+  tailwind_node_modules:
