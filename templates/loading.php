@@ -10,7 +10,7 @@
 
 <div class="scanline fixed inset-x-0 top-0 z-20 h-[130vh] pointer-events-none opacity-0" id="scanline" aria-hidden="true"></div>
 
-<div class="fixed inset-0 z-50 grid place-items-center bg-slate-950 text-slate-100 transition-opacity duration-700 isolation-isolate" id="loader" role="status" aria-live="polite">
+<div class="fixed inset-0 z-50 grid place-items-center bg-slate-950 text-slate-100 transition-opacity duration-700 isolation-isolate" id="loader" role="status" aria-live="polite" tabindex="-1">
   <div class="w-[min(520px,92vw)] overflow-hidden rounded-xl border border-blue-500/55 bg-slate-900 shadow-[0_20px_50px_rgba(2,6,23,0.8)] ring-1 ring-blue-400/15">
     <div class="flex items-center justify-between border-b border-blue-500/25 bg-slate-950/65 px-4 py-3 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-slate-100">
       <span>Code Build Sequence</span>
@@ -46,6 +46,9 @@
     let current = 0;
     let value = 0;
 
+    // ensure loader receives initial focus so elements inside `#app` are not focused while aria-hidden
+    try { loader.focus(); } catch (e) { /* noop */ }
+
     const pulse = setInterval(() => {
       value += 4;
       percent.textContent = Math.min(value, 100) + "%";
@@ -62,13 +65,27 @@
       bar.style.width = "100%";
 
       setTimeout(() => {
-        loader.classList.add("hidden");
-        if (app) app.setAttribute("aria-hidden", "false");
-        scanline.classList.add("active");
+        // fade out loader, then remove and restore accessibility on app
+        loader.classList.add("opacity-0");
 
-        cards.forEach((card, index) => {
-          setTimeout(() => card.classList.add("revealed"), 160 + index * 130);
-        });
+        setTimeout(() => {
+          // remove aria-hidden and inert from app to restore accessibility
+          if (app) {
+            try {
+              app.removeAttribute('aria-hidden');
+              app.removeAttribute('inert');
+            } catch (e) { /* noop */ }
+          }
+
+          scanline.classList.add("active");
+
+          cards.forEach((card, index) => {
+            setTimeout(() => card.classList.add("revealed"), 160 + index * 130);
+          });
+
+          // remove loader from DOM
+          try { loader.remove(); } catch (e) { loader.style.display = 'none'; }
+        }, 700);
       }, 1550);
     });
   })();

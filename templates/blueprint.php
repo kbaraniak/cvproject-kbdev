@@ -85,7 +85,7 @@
   }
   ?>
 
-  <main class="relative z-10 max-w-5xl mx-auto px-6 md:px-8 py-24 md:py-32" id="app" <?php echo $showLoader ? 'aria-hidden="true"' : ''; ?>>
+  <main class="relative z-10 max-w-5xl mx-auto px-6 md:px-8 py-24 md:py-32" id="app" <?php echo $showLoader ? 'aria-hidden="true" inert' : ''; ?>>
     <?php if (isset($hero)): ?>
       <section class="space-y-6 mb-12">
         <?php if (!empty($hero['eyebrow'])): ?>
