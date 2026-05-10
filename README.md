@@ -204,7 +204,7 @@ Aby uruchomić skan projektu, użyj:
 
 **Przykład:**
 ```
-[AGENT_SCAN] Projekt: https://github.com/kbaraniak/MVList
+[AGENT_SCAN] Projekt: https://github.com/kbaraniak/kbdev
 ```
 
 Agent automatycznie:
