@@ -64,34 +64,57 @@
     window.addEventListener("load", () => {
       bar.style.width = "100%";
 
-      setTimeout(() => {
-        // fade out loader, disable pointer events then remove and restore accessibility on app
-        loader.classList.add("opacity-0", "pointer-events-none");
+      // Wait until CSS has been applied for app.css (avoid FOUC and broken layout)
+      const maxWait = 3000; // ms
+      const start = Date.now();
 
-        setTimeout(() => {
-          // remove aria-hidden and inert from app to restore accessibility
-          if (app) {
-            try {
-              app.removeAttribute('aria-hidden');
-              app.removeAttribute('inert');
-            } catch (e) { /* noop */ }
+      function cssLoaded() {
+        try {
+          for (const sheet of document.styleSheets) {
+            if (!sheet.href) continue;
+            if (sheet.href.includes('/assets/css/app.css')) {
+              // if rules are present, CSS parsed
+              try { if (sheet.cssRules && sheet.cssRules.length > 0) return true; } catch (e) { /* cross-origin or not ready */ }
+            }
           }
+        } catch (e) { /* ignore */ }
+        return false;
+      }
 
-          scanline.classList.add("active");
+      function tryHide() {
+        if (cssLoaded() || (Date.now() - start) > maxWait) {
+          // fade out loader, disable pointer events then remove and restore accessibility on app
+          loader.classList.add("opacity-0", "pointer-events-none");
 
-          cards.forEach((card, index) => {
-            setTimeout(() => card.classList.add("revealed"), 160 + index * 130);
-          });
+          setTimeout(() => {
+            // remove aria-hidden and inert from app to restore accessibility
+            if (app) {
+              try {
+                app.removeAttribute('aria-hidden');
+                app.removeAttribute('inert');
+              } catch (e) { /* noop */ }
+            }
 
-          // remove loader from DOM and ensure it's not blocking
-          try { loader.remove(); } catch (e) { loader.style.display = 'none'; loader.classList.add('hidden'); }
-          // restore focus to first interactive element
-          try {
-            const firstInteractive = document.querySelector('a, button, input, [tabindex]:not([tabindex="-1"])');
-            if (firstInteractive) firstInteractive.focus();
-          } catch (e) { /* noop */ }
-        }, 700);
-      }, 1550);
+            scanline.classList.add("active");
+
+            cards.forEach((card, index) => {
+              setTimeout(() => card.classList.add("revealed"), 160 + index * 130);
+            });
+
+            // remove loader from DOM and ensure it's not blocking
+            try { loader.remove(); } catch (e) { loader.style.display = 'none'; loader.classList.add('hidden'); }
+            // restore focus to first interactive element
+            try {
+              const firstInteractive = document.querySelector('a, button, input, [tabindex]:not([tabindex="-1"])');
+              if (firstInteractive) firstInteractive.focus();
+            } catch (e) { /* noop */ }
+          }, 700);
+        } else {
+          requestAnimationFrame(tryHide);
+        }
+      }
+
+      tryHide();
     });
   })();
 </script>
