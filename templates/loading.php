@@ -65,8 +65,8 @@
       bar.style.width = "100%";
 
       setTimeout(() => {
-        // fade out loader, then remove and restore accessibility on app
-        loader.classList.add("opacity-0");
+        // fade out loader, disable pointer events then remove and restore accessibility on app
+        loader.classList.add("opacity-0", "pointer-events-none");
 
         setTimeout(() => {
           // remove aria-hidden and inert from app to restore accessibility
@@ -83,8 +83,13 @@
             setTimeout(() => card.classList.add("revealed"), 160 + index * 130);
           });
 
-          // remove loader from DOM
-          try { loader.remove(); } catch (e) { loader.style.display = 'none'; }
+          // remove loader from DOM and ensure it's not blocking
+          try { loader.remove(); } catch (e) { loader.style.display = 'none'; loader.classList.add('hidden'); }
+          // restore focus to first interactive element
+          try {
+            const firstInteractive = document.querySelector('a, button, input, [tabindex]:not([tabindex="-1"])');
+            if (firstInteractive) firstInteractive.focus();
+          } catch (e) { /* noop */ }
         }, 700);
       }, 1550);
     });
