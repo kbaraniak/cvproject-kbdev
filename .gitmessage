@@ -1,0 +1,13 @@
+# Wybierz jeden z typów poniżej:
+# [Feature]   - nowa funkcjonalność
+# [Fix]       - naprawa błędu
+# [UI]        - zmiany w wyglądzie / CSS / layout
+# [Docs]      - zmiany w dokumentacji (README, itp.)
+# [Chore]     - prace porządkowe, konfiguracja, skrypty
+# [Build]     - zmiany w procesie budowania (Vite, Vercel)
+# [Refactor]  - zmiana kodu, która nie poprawia błędu ani nie dodaje funkcji
+#
+# Pamiętaj:
+# 1. Opis zaczynaj od wielkiej litery.
+# 2. Używaj trybu rozkazującego (np. "Add" zamiast "Added").
+# 3. Jeśli zmiana jest duża, dodaj opis w nowej linii po pustym wierszu.
