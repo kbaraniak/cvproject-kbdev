@@ -1,0 +1,12 @@
+{
+  "name": "cvprojects",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "tw:watch": "tailwindcss -i ./public/assets/css/input.css -o ./public/assets/css/app.css --watch",
+    "tw:build": "tailwindcss -i ./public/assets/css/input.css -o ./public/assets/css/app.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
