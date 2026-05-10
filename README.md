@@ -184,6 +184,46 @@ Projekt używa `.gitmessage` template do standaryzacji commitów. Dostępne typy
 
 ---
 
+## 🤖 GitHub Project Scanner Agent
+
+Projekt zawiera wbudowanego **GitHub Project Scanner** – agenta AI do automatycznego skanowania i analizy projektów z GitHub.
+
+### Funkcjonalność agenta:
+
+Agent analizuje repozytoria GitHub i ekstrahuje:
+- 📝 **Nazwa projektu**
+- 📄 **Krótki opis** (1-2 zdania) – syntetyzowany z kodu, nie z README
+- 🏷️ **Tagi technologiczne** (języki, frameworki, bazy danych)
+- 📌 **Wyniki** zapisywane w `scan/found_{timestamp}.txt`
+
+### Jak korzystać:
+
+Aby uruchomić skan projektu, użyj:
+```
+[AGENT_SCAN] Projekt: https://github.com/{user}/{project}
+```
+
+**Przykład:**
+```
+[AGENT_SCAN] Projekt: https://github.com/kbaraniak/MVList
+```
+
+Agent automatycznie:
+1. Pobiera stronę repozytorium
+2. Analizuje kod źródłowy (package.json, Dockerfile, routes, itd.)
+3. Generuje opis na podstawie struktury kodu, nie opisu repozytorium
+4. Zapisuje wyniki w `scan/` z timestampem
+
+### Konfiguacja agenta:
+
+Szczegółowa konfiguracja znajduje się w [.agents.md](.agents.md) – zawiera:
+- Trigger patterns
+- Format wyjściowy
+- Zachowanie analizatora
+- Priorytety inferencji
+
+---
+
 ## 📧 Kontakt
 
 Projekt portfolio – zapraszam do sprawdzenia na https://cvprojects.kbdev.run
