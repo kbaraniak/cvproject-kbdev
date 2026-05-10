@@ -104,3 +104,68 @@ Działasz z tym dzisiaj, czy potrzebujesz jeszcze pomysłu na konkretny efekt wi
 - animacja co powala na nogi
 
 Niniejszy projekt powstał w paradygmacie AI-Assisted Development. Wykorzystałem LLM do przyspieszenia budowy frontendu, skupiając się na własnoręcznej implementacji backendu i konteneryzacji. Wynik: 3x szybszy czas wdrożenia przy zachowaniu wysokiej jakości kodu.
+
+==============================
+## 🚀 WDROŻENIE - TODO LIST
+==============================
+
+### 1. Frontend - Animacje & Layout
+- [x] Blueprint Loader animation (header.php) - "INITIALIZING BLUEPRINT..."
+- [x] Grid background pattern (radial-gradient)
+- [x] Top 4 projects showcase (cards with shadow/hover effects)
+- [x] Remaining projects list (filterable by language)
+- [x] "More on GitHub" CTA button (bottom)
+- [x] Responsive design na mobile (Tailwind breakpoints)
+- [X] SVG animations dla project cards (glow on hover)
+
+### 2. Backend & API
+- [x] Visitor counter persistence via /api/counter.php (Redis)
+- [ ] Sanitization & validation (CSRF tokens, XSS prevention)
+- [ ] Error handling & logging
+
+### 3. DevOps & Deployment
+- [ ] Cloudflare Tunnel setup (SSH into VPS + cloudflared login)
+- [ ] Nginx reverse proxy configuration
+- [x] Docker Compose manifest finalization
+- [ ] Podman support (vs Docker)
+- [ ] GitHub Actions CI/CD workflow (auto-deploy on push)
+
+### 4. Infrastructure (VPS)
+- [x] Rent VPS (Hetzner 3€/mo / DigitalOcean 5$/mo)
+- [x] SSH key setup
+- [ ] Cloudflare DNS A record pointing to VPS IP
+- [ ] Cloudflare Tunnel config.yml
+- [ ] Monitoring & logs setup
+
+### 5. Redis Implementation
+- [x] Add Redis service to docker-compose.yml ✅ (redis:7-alpine, with persistence)
+
+### 6. Testing & Quality
+- [ ] Unit tests (PHP unit)
+- [ ] Integration tests (API endpoints)
+- [ ] E2E tests (Playwright/Cypress)
+- [ ] Security audit (OWASP)
+- [ ] Performance testing (Page Speed Insights)
+- [ ] Lighthouse audit (Core Web Vitals)
+
+### 7. Documentation & CV
+- [ ] Update README with deployment steps
+- [ ] Add DEPLOYMENT.md (VPS + Cloudflare Tunnel guide)
+- [ ] Add ARCHITECTURE.md (system design)
+- [ ] Write CV blurb about self-hosted infrastructure
+
+### 8. Go Live
+- [ ] Domain registration (cvprojects.kbdev.run)
+- [ ] First deploy to production
+- [ ] Smoke tests
+- [ ] Uptime monitoring (UptimeRobot or similar)
+- [ ] Setup error tracking (Sentry or similar)
+
+### Priority Order (MVP to Production):
+1. Blueprint Loader animation ⭐⭐⭐ (looks amazing)
+2. Top 4 projects showcase ⭐⭐⭐ (portfolio core)
+3. Cloudflare Tunnel + GitHub Actions ⭐⭐ (devops)
+4. Performance + Lighthouse audit ⭐⭐ (quality)
+5. Deployment + Architecture docs ⭐ (polish)
+
+**Current Score: 7/10 → Target: 9.5/10 🎯**

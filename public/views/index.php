@@ -11,7 +11,7 @@ $hero = [
 
 $showLoader = true;
 
-// Przygotuj injected content: w tym bloku include'uj sekcje, które chcesz wyrenderować
+// Przygotuj injected content: w tym bloku wrzuca sekcje, które renderuje
 ob_start();
 include __DIR__ . '/components/counter.php';
 include __DIR__ . '/components/sections/projects.php';
@@ -26,3 +26,6 @@ if (file_exists($templatePath)) {
 } else {
   echo "Template nie znaleziony: $templatePath";
 }
+
+// Render footer
+include __DIR__ . '/components/sections/footer.php';
