@@ -11,7 +11,8 @@
 
 <script>
   // Fetch visitor count from Redis via API
-  fetch('/api/counter.php')
+  // Use the routed path '/api/counter' (router handles includes); direct .php requests are rewritten
+  fetch('/api/counter')
     .then(response => response.json())
     .then(data => {
       if (data.status === 'success') {
