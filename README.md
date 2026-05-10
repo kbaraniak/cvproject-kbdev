@@ -176,11 +176,10 @@ Projekt używa `.gitmessage` template do standaryzacji commitów. Dostępne typy
 
 ---
 
-## 🎨 Personalizacja
+## 📊 Statystyki odwiedzin
 
-- Hero sekcja: edytuj `public/index.php`
-- Projekty: dodaj w `public/views/components/sections/projects.php`
-- Styling: modyfikuj `assets/css/input.css` i uruchom `npm run tw:build`
+- [Counter] Licznik oparty na Redisie zlicza unikalne wejścia użytkownika na podstawie hashowania `IP + User-Agent`
+- Dzięki czemu odświeżenie strony przez tę samą osobę nie zwiększa znów wyniku
 
 ---
 
