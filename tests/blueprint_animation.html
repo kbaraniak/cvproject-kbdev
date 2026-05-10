@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blueprint Animation - CV Projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f2f8ff;
+      --bg-soft: #e6f2ff;
+      --ink: #0e1c2f;
+      --muted: #3f5d7d;
+      --line: rgba(31, 85, 156, 0.18);
+      --accent: #1f77ff;
+      --accent-2: #00b8d4;
+      --card: rgba(255, 255, 255, 0.72);
+      --shadow: 0 22px 45px rgba(16, 57, 112, 0.16);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 0%, #ffffff 0%, var(--bg) 40%, #dcecff 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .blueprint-grid,
+    .blueprint-grid::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .blueprint-grid {
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 26px 26px;
+      opacity: 0.7;
+    }
+
+    .blueprint-grid::before {
+      z-index: -1;
+      background:
+        radial-gradient(circle at 10% 30%, rgba(0, 184, 212, 0.14), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(31, 119, 255, 0.14), transparent 24%),
+        radial-gradient(circle at 60% 90%, rgba(31, 119, 255, 0.1), transparent 22%);
+      filter: blur(6px);
+    }
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      background: #081224;
+      color: #b8dcff;
+      display: grid;
+      place-items: center;
+      transition: opacity 0.75s ease, visibility 0.75s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-panel {
+      width: min(520px, 92vw);
+      border: 1px solid rgba(129, 181, 255, 0.45);
+      border-radius: 10px;
+      background: rgba(5, 11, 22, 0.75);
+      backdrop-filter: blur(3px);
+      box-shadow: 0 0 0 1px rgba(89, 145, 230, 0.3), 0 20px 45px rgba(2, 13, 35, 0.56);
+      overflow: hidden;
+    }
+
+    .loader-head {
+      padding: 0.75rem 1rem;
+      font: 600 0.82rem/1.4 "JetBrains Mono", monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(129, 181, 255, 0.35);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .loader-body {
+      padding: 1rem;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .loader-log {
+      font: 500 0.86rem/1.5 "JetBrains Mono", monospace;
+      min-height: 96px;
+      opacity: 0.9;
+    }
+
+    .bar-shell {
+      height: 8px;
+      width: 100%;
+      background: #0f233e;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(140, 190, 255, 0.2);
+    }
+
+    .bar-fill {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border-radius: inherit;
+      box-shadow: 0 0 20px rgba(0, 184, 212, 0.7);
+      transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .scanline {
+      position: fixed;
+      top: -130vh;
+      left: 0;
+      width: 100%;
+      height: 130vh;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 25;
+      background: linear-gradient(
+        to bottom,
+        rgba(32, 128, 255, 0),
+        rgba(32, 128, 255, 0.1),
+        rgba(32, 128, 255, 0)
+      );
+      mix-blend-mode: multiply;
+    }
+
+    .scanline.active {
+      animation: scanner 1.4s ease forwards;
+    }
+
+    @keyframes scanner {
+      0% {
+        transform: translateY(-30%);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      85% {
+        opacity: 0.85;
+      }
+      100% {
+        transform: translateY(145%);
+        opacity: 0;
+      }
+    }
+
+    .wrapper {
+      width: min(1120px, 92vw);
+      margin-inline: auto;
+      padding: 6rem 0 4rem;
+    }
+
+    .hero {
+      padding: 2rem 0 2.4rem;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 1px dashed rgba(31, 119, 255, 0.3);
+      border-radius: var(--radius);
+      transform-origin: left;
+      transform: scaleX(0);
+      animation: drawX 0.8s ease forwards 0.2s;
+      z-index: -1;
+    }
+
+    @keyframes drawX {
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    .eyebrow {
+      font: 600 0.78rem/1.4 "JetBrains Mono", monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5.5vw, 4rem);
+      line-height: 1.05;
+      max-width: 15ch;
+      margin-bottom: 1rem;
+    }
+
+    .lead {
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.5vw, 1.16rem);
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .tag {
+      padding: 0.46rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(31, 119, 255, 0.38);
+      background: rgba(255, 255, 255, 0.66);
+      font: 600 0.78rem/1 "JetBrains Mono", monospace;
+      color: #24456e;
+    }
+
+    .section-title {
+      margin: 2.8rem 0 1rem;
+      font-size: clamp(1.5rem, 2.4vw, 2rem);
+    }
+
+    .section-sub {
+      color: var(--muted);
+      margin-bottom: 1.4rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .card {
+      border: 1px solid rgba(31, 119, 255, 0.25);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transform: translateY(22px) scale(0.98);
+      opacity: 0;
+      filter: saturate(0.9);
+      transition: transform 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease, filter 0.45s ease;
+      position: relative;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(31, 119, 255, 0), rgba(31, 119, 255, 0.12), rgba(0, 184, 212, 0));
+      transform: translateX(-130%);
+      transition: transform 0.7s ease;
+      pointer-events: none;
+    }
+
+    .card.revealed {
+      animation: riseIn 0.68s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes riseIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: saturate(1);
+      }
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 184, 212, 0.6);
+      box-shadow: 0 22px 45px rgba(6, 91, 121, 0.2);
+    }
+
+    .card:hover::before {
+      transform: translateX(130%);
+    }
+
+    .thumb {
+      aspect-ratio: 16 / 9;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(31, 119, 255, 0.22);
+      background: linear-gradient(145deg, #bbd9ff, #eaf3ff 50%, #d4e8ff);
+      display: grid;
+      place-items: center;
+      font: 700 0.88rem/1 "JetBrains Mono", monospace;
+      color: rgba(9, 35, 73, 0.72);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          rgba(31, 119, 255, 0.07) 0 1px,
+          transparent 1px 16px
+        );
+      mix-blend-mode: multiply;
+      opacity: 0.8;
+    }
+
+    .content {
+      padding: 1rem;
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .content h3 {
+      font-size: 1.1rem;
+    }
+
+    .content p {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.94rem;
+    }
+
+    .stack {
+      font: 500 0.78rem/1.55 "JetBrains Mono", monospace;
+      color: #1a4475;
+      opacity: 0.92;
+    }
+
+    .actions {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 0.1rem;
+    }
+
+    .btn {
+      flex: 1;
+      text-decoration: none;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.58rem 0.75rem;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .btn.primary {
+      color: #fff;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+
+    .btn.secondary {
+      color: #1a4475;
+      border-color: rgba(31, 119, 255, 0.35);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .list {
+      margin-top: 0.4rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .row {
+      border: 1px solid rgba(31, 119, 255, 0.2);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.72);
+      display: grid;
+      gap: 0.6rem;
+      padding: 0.85rem 1rem;
+      transform: translateY(14px);
+      opacity: 0;
+      animation: riseIn 0.6s ease forwards;
+    }
+
+    .row-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .row small {
+      font: 500 0.75rem/1 "JetBrains Mono", monospace;
+      letter-spacing: 0.04em;
+      color: #28558b;
+    }
+
+    .github-cta {
+      margin-top: 2.1rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0, 184, 212, 0.45);
+      background: linear-gradient(135deg, rgba(0, 184, 212, 0.12), rgba(31, 119, 255, 0.09));
+      padding: 1.25rem;
+      display: grid;
+      gap: 0.8rem;
+      box-shadow: var(--shadow);
+    }
+
+    .github-cta a {
+      width: fit-content;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 0.65rem 1rem;
+      color: #fff;
+      background: linear-gradient(90deg, #0b8eff, #00a4b5);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .ai-note {
+      margin-top: 2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-left: 3px solid rgba(31, 119, 255, 0.4);
+      padding-left: 0.8rem;
+    }
+
+    .delay-1 { animation-delay: 0.05s; }
+    .delay-2 { animation-delay: 0.12s; }
+    .delay-3 { animation-delay: 0.2s; }
+
+    @media (max-width: 760px) {
+      .wrapper {
+        padding-top: 5.2rem;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .loader-head {
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="blueprint-grid" aria-hidden="true"></div>
+  <div class="scanline" id="scanline" aria-hidden="true"></div>
+
+  <div class="loader" id="loader" role="status" aria-live="polite">
+    <div class="loader-panel">
+      <div class="loader-head">
+        <span>Code Build Sequence</span>
+        <span id="loader-percent">0%</span>
+      </div>
+      <div class="loader-body">
+        <div class="loader-log" id="loader-log">Initializing blueprint matrix...</div>
+        <div class="bar-shell">
+          <div class="bar-fill" id="loader-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrapper" id="app" aria-hidden="true">
+    <section class="hero">
+      <p class="eyebrow">Portfolio Blueprint</p>
+      <h1>Wybrane projekty, które pokazują realny warsztat.</h1>
+      <p class="lead">
+        Strona startuje jak szkic techniczny: najpierw linie i konstrukcja, potem treść.
+        Rekruter od razu widzi projekty pod PHP, API i pracę produktową.
+      </p>
+      <div class="tags">
+        <span class="tag">PHP</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">API Design</span>
+        <span class="tag">React</span>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Wybrane Projekty</h2>
+      <p class="section-sub">Top 4 pod ofertę PHP Developera i wymagania e-commerce.</p>
+      <div class="cards" id="cards">
+        <article class="card">
+          <div class="thumb">Librus API</div>
+          <div class="content">
+            <h3>Librus API (Rewrited)</h3>
+            <p>Wersje Rust i Node.js pokazujące dojrzałość architektury oraz pracę z API na różnych runtime.</p>
+            <p class="stack">Rust, Node.js, REST API, Testing</p>
+            <div class="actions">
+              <a href="#" class="btn primary">Live Demo</a>
+              <a href="#" class="btn secondary">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb">MVList</div>
+          <div class="content">
+            <h3>MVList (PHP + MySQL)</h3>
+            <p>Projekt backendowy z naciskiem na model danych, relacje i wydajne zapytania SQL.</p>
+            <p class="stack">PHP, MySQL, Auth, MVC</p>
+            <div class="actions">
+              <a href="#" class="btn primary">Live Demo</a>
+              <a href="#" class="btn secondary">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb">OnerOS</div>
+          <div class="content">
+            <h3>OnerOS (React)</h3>
+            <p>Nowoczesny frontend z naciskiem na UX, czytelność i płynność interfejsu.</p>
+            <p class="stack">React, UI Motion, Responsive</p>
+            <div class="actions">
+              <a href="#" class="btn primary">Live Demo</a>
+              <a href="#" class="btn secondary">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb">Odliczamydo.pl</div>
+          <div class="content">
+            <h3>Odliczamydo.pl (PHP)</h3>
+            <p>Gotowy produkt dla użytkownika końcowego z szybkim i stabilnym delivery.</p>
+            <p class="stack">PHP, Product Delivery, SEO Basics</p>
+            <div class="actions">
+              <a href="#" class="btn primary">Live Demo</a>
+              <a href="#" class="btn secondary">GitHub</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Pozostałe Projekty</h2>
+      <p class="section-sub">Krótka lista pokazująca szeroki przekrój technologii i kierunków rozwoju.</p>
+      <div class="list">
+        <article class="row delay-1">
+          <div class="row-head">
+            <h3>iTVT</h3>
+            <small>Next.js</small>
+          </div>
+          <p>Projekt fullstack z naciskiem na wydajność renderowania i czytelny DX.</p>
+        </article>
+
+        <article class="row delay-2">
+          <div class="row-head">
+            <h3>YST</h3>
+            <small>Python</small>
+          </div>
+          <p>Narzędzie automatyzujące powtarzalne zadania i porządkujące przepływ pracy.</p>
+        </article>
+
+        <article class="row delay-3">
+          <div class="row-head">
+            <h3>EasyCookie.js</h3>
+            <small>Open Source Library</small>
+          </div>
+          <p>Biblioteka JS do prostego zarządzania cookie z naciskiem na ergonomię API.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="github-cta">
+      <h2>Więcej na GitHubie</h2>
+      <p>
+        Chcesz sprawdzić całość? Tutaj jest pełna lista repozytoriów, commitów i eksperymentów.
+      </p>
+      <a href="#">Zobacz wszystkie repozytoria na GitHub</a>
+    </section>
+
+    <p class="ai-note">
+      Przy optymalizacji kodu i tworzeniu dokumentacji korzystam z narzędzi AI,
+      co przyspiesza iteracje i podnosi jakość dostarczanych rozwiązań.
+    </p>
+  </main>
+
+  <script>
+    (function () {
+      const loader = document.getElementById("loader");
+      const bar = document.getElementById("loader-bar");
+      const percent = document.getElementById("loader-percent");
+      const log = document.getElementById("loader-log");
+      const scanline = document.getElementById("scanline");
+      const app = document.getElementById("app");
+      const cards = Array.from(document.querySelectorAll(".card"));
+
+      const steps = [
+        "Compiling layout vectors...",
+        "Linking project modules...",
+        "Calibrating responsive grid...",
+        "Injecting visual layers...",
+        "Blueprint ready."
+      ];
+
+      let current = 0;
+      let value = 0;
+
+      const pulse = setInterval(() => {
+        value += 4;
+        percent.textContent = Math.min(value, 100) + "%";
+        if (value % 20 === 0 && current < steps.length) {
+          log.textContent = steps[current];
+          current += 1;
+        }
+        if (value >= 100) {
+          clearInterval(pulse);
+        }
+      }, 58);
+
+      window.addEventListener("load", () => {
+        bar.style.width = "100%";
+
+        setTimeout(() => {
+          loader.classList.add("hidden");
+          app.setAttribute("aria-hidden", "false");
+          scanline.classList.add("active");
+
+          cards.forEach((card, index) => {
+            setTimeout(() => card.classList.add("revealed"), 160 + index * 130);
+          });
+        }, 1550);
+      });
+    })();
+  </script>
+</body>
+</html>
