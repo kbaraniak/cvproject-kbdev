@@ -56,6 +56,11 @@ get('/callback/$name/$last_name', function($name, $last_name){
 post('/user', '/api/save_user');
 
 
+// ##################################################
+// Visitor counter API
+get('/api/counter', '/api/counter');
+
+
 
 // ##################################################
 // ##################################################

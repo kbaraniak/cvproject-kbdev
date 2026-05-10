@@ -8,3 +8,18 @@
   <span id="visit-count" class="font-bold text-sky-300">...</span>
   <span class="text-slate-400">osób</span>
 </div>
+
+<script>
+  // Fetch visitor count from Redis via API
+  fetch('/api/counter.php')
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === 'success') {
+        document.getElementById('visit-count').textContent = data.count;
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching visitor count:', error);
+      document.getElementById('visit-count').textContent = '0';
+    });
+</script>

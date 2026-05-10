@@ -3,6 +3,9 @@ FROM php:8.2-apache
 # Enable commonly used Apache modules.
 RUN a2enmod rewrite headers
 
+# Install Redis PHP extension
+RUN pecl install redis && docker-php-ext-enable redis
+
 WORKDIR /var/www/html
 
 # Create public directory structure

@@ -1,0 +1,157 @@
+Projekt: mvlist
+Link: https://github.com/klubuntu-backup1/mvlist
+Krótki opis: Aplikacja do zarządzania listą projektów Minecraft z weryfikacją, zbudowana w PHP, HTML i CSS z bazą danych oraz interfejsem webowym.
+Short desc: Minecraft project list management application with verification system, built with PHP, HTML, CSS database backend and web interface.
+Tagi: PHP, Minecraft, List, Database, Frontend, Archived, Web
+
+------------------------------------
+
+Projekt: chestdrop-app
+Link: https://github.com/Klubuntu/chestdrop-app
+Krótki opis: Responsywna aplikacja Next.js do losowego wyboru i podglądu przedmiotów z gry, stworzona w TypeScript z Tailwind CSS i nowoczesnym interfejsem.
+Short desc: Responsive Next.js application for random item selection and preview from games, built with TypeScript, Tailwind CSS and modern UI.
+Tagi: TypeScript, React, Next.js, Frontend, Tailwind CSS
+
+------------------------------------
+
+Projekt: hub
+Link: https://github.com/open-itvt/hub
+Krótki opis: Centralna strona projektu iTVT zbudowana w Next.js i React, umożliwiająca zarządzanie i przeglądanie wszystkich projektów organizacji.
+Short desc: Central project hub for iTVT built with Next.js and React, providing centralized management and viewing of organization projects.
+Tagi: JavaScript, Next.js, React, Frontend, iTVT, Hub
+
+------------------------------------
+
+Projekt: roadmap
+Link: https://github.com/open-itvt/roadmap
+Krótki opis: Zaawansowane narzędzie do planowania projektów z pulpitem administratora, stworzone na Vite i React z Tailwind CSS, uwierzytelnianiem WebAuthn i serverless backendem na Vercel.
+Short desc: Advanced project planning tool with admin dashboard, built with Vite and React with Tailwind CSS, WebAuthn authentication and Vercel serverless backend.
+Tagi: TypeScript, React, Tailwind, WebAuthn, Full-stack, Roadmap, Vercel, Redis
+
+------------------------------------
+
+Projekt: qr-shorter
+Link: https://github.com/open-itvt/qr-shorter
+Krótki opis: Skrócacz adresów URL z automatycznym generowaniem kodów QR, obsługujący SQLite dla rozwoju i Redis dla produkcji, zbudowany w TypeScript z Next.js.
+Short desc: URL shortener with automatic QR code generation, supporting SQLite for development and Redis for production, built with TypeScript and Next.js.
+Tagi: TypeScript, Next.js, QR, URL Shortener, SQLite, Redis, SEO
+
+------------------------------------
+
+Projekt: home
+Link: https://github.com/open-itvt/home
+Krótki opis: Publiczna strona domowa projektu iTVT stworzona w HTML, CSS i JavaScript z responsywnym designem i linkami do wszystkich projektów organizacji.
+Short desc: Public home page for iTVT project built with HTML, CSS and JavaScript, featuring responsive design and links to all organization projects.
+Tagi: HTML, CSS, JavaScript, Frontend, iTVT, Homepage
+
+------------------------------------
+
+Projekt: Web-Preview
+Link: https://github.com/OnerOS-Project/Web-Preview
+Krótki opis: Interaktywna symulacja systemu operacyjnego OnerOS w przeglądarce internetowej, stworzona w React z zaawansowanym interfejsem graficznym i emulacją systemu.
+Short desc: Interactive operating system simulator for OnerOS in web browser, built with React featuring advanced graphical interface and system emulation.
+Tagi: JavaScript, React, Web UI, Frontend, OS Simulation, Cross-browser
+
+------------------------------------
+
+Projekt: revo-stream
+Link: https://github.com/RevoProject/revo-stream
+Krótki opis: Nowoczesna aplikacja do streamingu na żywo dla streamerów i zespołów produkcji, stworzona w Rust z Tauri i Svelte z natywnym backendem OBS i zaawansowaną obsługą protokołów transmisji.
+Short desc: Modern live streaming application for streamers and production teams, built with Rust, Tauri and Svelte featuring native OBS backend and advanced streaming protocol support.
+Tagi: Rust, Svelte, Tauri, OBS, Streaming, Live, Desktop, RTMP
+
+------------------------------------
+
+Projekt: revo-website
+Link: https://github.com/RevoProject/revo-website
+Krótki opis: Oficjalna strona internetowa projektu RevoStream stworzona na Vite z interfejsem HTML, CSS i JavaScript pokazującym możliwości aplikacji.
+Short desc: Official website for RevoStream project built with Vite, featuring HTML, CSS and JavaScript showcasing application capabilities.
+Tagi: JavaScript, CSS, HTML, Frontend, Website, Vite
+
+------------------------------------
+
+Projekt: recap-messenger
+Link: https://github.com/Klubuntu/recap-messenger
+Krótki opis: Narzędzie analityczne do przetwarzania danych wiadomości Facebook Messenger z funkcjami filtrowania, statystyki i wielojęzycznego wsparcia, napisane w Python.
+Short desc: Analytics tool for processing Facebook Messenger data with filtering features, statistics and multilingual support, written in Python.
+Tagi: Python, CLI, Facebook, Messenger, Analysis, Statistics, PyYAML
+
+------------------------------------
+
+Projekt: YST
+Link: https://github.com/Klubuntu/YST
+Krótki opis: Wszechstronne narzędzie do pobierania i analizy statystyk YouTube kanałów i filmów, dostępne zarówno z GUI jak i interfejsu linii poleceń, skompilowane do formatu .exe.
+Short desc: Comprehensive YouTube statistics tool for channels and videos with both GUI and CLI interfaces, compiled to .exe format for Windows.
+Tagi: Python, YouTube, CLI, API, Statistics, Analytics, YouTube API v3
+
+------------------------------------
+
+Projekt: MG-DC
+Link: https://github.com/Klubuntu/MG-DC
+Krótki opis: Wszechstronny bot Discord do odtwarzania muzyki z obsługą wielu usług streamingu, automatycznym wykrywaniem języka i wielojęzycznym interfejsem użytkownika.
+Short desc: Versatile Discord music bot with support for multiple streaming services, automatic language detection and multilingual user interface.
+Tagi: JavaScript, Discord, Bot, Music, Discord.js, Multilingual
+
+------------------------------------
+
+Projekt: obs-webcontrol
+Link: https://github.com/Klubuntu/obs-webcontrol
+Krótki opis: Interaktywny kontroler dla OBS Studio dostępny przez aplikację webową Next.js, umożliwiający zdalne sterowanie streamem z obsługą integracji Stream Deck.
+Short desc: Interactive web-based controller for OBS Studio via Next.js application, enabling remote stream control with Stream Deck integration support.
+Tagi: JavaScript, Next.js, OBS, Web Control, Frontend, Stream Deck
+
+------------------------------------
+
+Projekt: tipply-goal-remaining
+Link: https://github.com/Klubuntu/tipply-goal-remaining
+Krótki opis: Elegancki widget do wyświetlania postępu celu donacji na platformie Tipply, dostępny jako aplikacja stacjonarna i web z Fastify backendem, wspierający różne motywy.
+Short desc: Elegant widget displaying donation goal progress on Tipply platform, available as desktop and web application with Fastify backend supporting multiple themes.
+Tagi: JavaScript, Fastify, Widget, Streaming, Tipply, Desktop, Themes
+
+------------------------------------
+
+Projekt: back-to-asm-with-rust
+Link: https://github.com/Klubuntu/back-to-asm-with-rust
+Krótki opis: Edukacyjny projekt do nauki programowania niskiego poziomu łączący Rust z Assemblerem, tworzący bootowalne obrazy systemów 16-bit, 32-bit i 64-bit z wsparciem dla znaków polskich.
+Short desc: Educational project for low-level programming combining Rust with Assembly, creating bootable system images for 16-bit, 32-bit and 64-bit with Polish character support.
+Tagi: Rust, Assembly, Kernel, Education, OS, Boot, x86
+
+------------------------------------
+
+Projekt: easycookie-rs
+Link: https://github.com/Klubuntu/easycookie-rs
+Krótki opis: Przyjazna biblioteka Rust do łatwego pobierania i przetwarzania ciasteczek HTTP z nagłówków odpowiedzi, integrowana z biblioteką reqwest.
+Short desc: User-friendly Rust library for easy extraction and processing of HTTP cookies from response headers, integrated with reqwest library.
+Tagi: Rust, Cookies, HTTP, Library, reqwest
+
+------------------------------------
+
+Projekt: librus-api-rewrited
+Link: https://github.com/kbaraniak/librus-api-rewrited
+Krótki opis: Nieoficjalna biblioteka Node.js API do komunikacji z systemem Librus Synergia, umożliwiająca programistyczną integrację z dziennikiem szkolnym i danymi ucznia.
+Short desc: Unofficial Node.js API library for communicating with Librus Synergia system, enabling programmatic integration with school journal and student data.
+Tagi: JavaScript, Node.js, API, Librus, Education, Synergia
+
+------------------------------------
+
+Projekt: librus-api
+Link: https://github.com/kbaraniak/librus-api
+Krótki opis: Nieoficjalna biblioteka Rust do komunikacji z API systemu Librus, umożliwiająca dostęp do danych szkolnych i dziennika z aplikacji Rust.
+Short desc: Unofficial Rust library for communicating with Librus API system, enabling access to school data and journal from Rust applications.
+Tagi: Rust, API, Librus, Library, Education
+
+------------------------------------
+
+Projekt: kbdev
+Link: https://github.com/kbaraniak/kbdev
+Krótki opis: Nowoczesne portfolio stworzone w Next.js 16 z TypeScript, Tailwind CSS i zaawansowanymi animacjami CSS, zaprezentowane z profesjonalnym interfejsem projektanta.
+Short desc: Modern portfolio built with Next.js 16 featuring TypeScript, Tailwind CSS and advanced CSS animations, showcased with professional designer interface.
+Tagi: JavaScript, TypeScript, Next.js, Portfolio, Tailwind CSS, Animations
+
+------------------------------------
+
+Projekt: pg-order-returns-php
+Link: https://github.com/kbaraniak/pg-order-returns-php
+Krótki opis: Pełnofunkcyjna aplikacja Laravel 13 do zarządzania zamówieniami i zwrotami towarów z bazą PostgreSQL, interfejsem Livewire i serwisami Docker dla developmentu.
+Short desc: Full-featured Laravel 13 application for order and return management with PostgreSQL database, Livewire interface and Docker services for development.
+Tagi: PHP, Laravel, Livewire, PostgreSQL, Database, Full-stack, Docker
