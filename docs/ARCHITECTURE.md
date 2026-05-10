@@ -73,8 +73,8 @@ flowchart TD
   - hidden origin through Cloudflare
   - no direct dependency on public app port exposure
 - Performance baseline:
-  - Lighthouse local audit generated in `tests/lighthouse-local.report.json`
-  - Lighthouse HTML report in `tests/lighthouse-local.report.html`
+  - Lighthouse local audit generated in `tests/lighthouse/audit-latest.json`
+  - Lighthouse HTML report in `tests/lighthouse/audit-latest.html`
 
 ## Roadmap / Future Improvements
 
