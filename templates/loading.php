@@ -83,17 +83,18 @@
 
       function tryHide() {
         if (cssLoaded() || (Date.now() - start) > maxWait) {
-          // fade out loader, disable pointer events then remove and restore accessibility on app
+          // CRITICAL: remove aria-hidden and inert from app IMMEDIATELY to restore accessibility
+          if (app) {
+            app.removeAttribute('aria-hidden');
+            app.removeAttribute('inert');
+          }
+
+          // fade out loader, disable pointer events
           loader.classList.add("opacity-0", "pointer-events-none");
 
           setTimeout(() => {
-            // remove aria-hidden and inert from app to restore accessibility
-            if (app) {
-              try {
-                app.removeAttribute('aria-hidden');
-                app.removeAttribute('inert');
-              } catch (e) { /* noop */ }
-            }
+            // remove loader from DOM
+            try { loader.remove(); } catch (e) { loader.style.display = 'none'; loader.classList.add('hidden'); }
 
             scanline.classList.add("active");
 
@@ -101,20 +102,27 @@
               setTimeout(() => card.classList.add("revealed"), 160 + index * 130);
             });
 
-            // remove loader from DOM and ensure it's not blocking
-            try { loader.remove(); } catch (e) { loader.style.display = 'none'; loader.classList.add('hidden'); }
             // restore focus to first interactive element
             try {
               const firstInteractive = document.querySelector('a, button, input, [tabindex]:not([tabindex="-1"])');
               if (firstInteractive) firstInteractive.focus();
             } catch (e) { /* noop */ }
-          }, 700);
+          }, 900);
         } else {
           requestAnimationFrame(tryHide);
         }
       }
 
-      tryHide();
+      // Add 200ms delay before starting hide logic
+      setTimeout(() => {
+        // Immediately remove accessibility blocking attributes from app
+        const appEl = document.getElementById("app");
+        if (appEl) {
+          appEl.removeAttribute('aria-hidden');
+          appEl.removeAttribute('inert');
+        }
+        tryHide();
+      }, 200);
     });
   })();
 </script>

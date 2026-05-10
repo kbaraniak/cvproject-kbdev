@@ -63,7 +63,7 @@
         tabs.forEach((tab) => {
           const active = tab.dataset.projectFilter === name;
           tab.classList.toggle("bg-blue-300", active);
-          tab.classList.toggle("text-slate-950", active);
+          tab.classList.toggle("text-white", active);
           tab.classList.toggle("border-blue-200", active);
           tab.classList.toggle("bg-slate-900/80", !active);
           tab.classList.toggle("text-slate-200", !active);
