@@ -5,17 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="My best projects for CV" />
   <title>Blueprint - CV Projects</title>
-  <!-- Critical CSS for hero (inlined to reduce LCP) -->
-  <style>
-    /* Minimal critical styles for hero to avoid layout shifts and reduce LCP */
-    body{background: linear-gradient(to bottom, #0b1220, #000); color:#e6eef8;}
-    main#app{max-width:80rem;margin:0 auto;padding:6rem 1.5rem;}
-    main#app h1{font-size:2.5rem;line-height:1.05;margin:0 0 .75rem;color:#e6eef8;font-weight:700}
-    main#app p{font-size:1.125rem;color:#94a3b8;margin:0}
-    .font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'JetBrains Mono', monospace}
-    /* Ensure the loader is visible immediately */
-    #loader{display:flex;align-items:center;justify-content:center}
-  </style>
+
   <!-- Use local compiled Tailwind CSS to avoid render-blocking CDN load -->
   <link rel="preload" href="/assets/css/app.css" as="style" onload="this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/assets/css/app.css"></noscript>
@@ -24,6 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" as="style" onload="this.rel='stylesheet'">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.min.js" defer></script>
   <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
   <style>
     html {
