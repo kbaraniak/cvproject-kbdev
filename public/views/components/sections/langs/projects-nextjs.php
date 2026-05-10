@@ -3,7 +3,7 @@
     <?php $thumb = 'https://raw.githubusercontent.com/kbaraniak/kbdev/main/public/img/thumbnails/chestdrop.jpeg'; ?>
     <div class="relative flex-shrink-0 h-[180px] overflow-hidden border-b border-slate-800 flex items-start justify-center <?php echo $thumb ? 'bg-slate-900/60' : 'bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800'; ?>">
       <?php if ($thumb): ?>
-        <img src="<?php echo $thumb; ?>" alt="chestdrop-app preview" class="absolute inset-0 w-full h-full object-cover object-center z-0" />
+        <img src="<?php echo $thumb; ?>" alt="chestdrop-app preview" class="absolute inset-0 w-full h-full object-cover object-center z-0 select-none" />
         <div class="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(2,6,23,0.18)_0_1px,transparent_1px_16px)] opacity-30 z-10"></div>
       <?php else: ?>
         <div class="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(148,163,184,0.05)_0_1px,transparent_1px_16px)] opacity-50"></div>
@@ -25,7 +25,7 @@
     <?php $thumb = 'https://raw.githubusercontent.com/kbaraniak/kbdev/main/public/img/thumbnails/itvt-hub.jpeg'; ?>
     <div class="relative flex-shrink-0 h-[180px] overflow-hidden border-b border-slate-800 flex items-start justify-center <?php echo $thumb ? 'bg-slate-900/60' : 'bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800'; ?>">
       <?php if ($thumb): ?>
-        <img src="<?php echo $thumb; ?>" alt="hub preview" class="absolute inset-0 w-full h-full object-cover object-center z-0" />
+        <img src="<?php echo $thumb; ?>" alt="hub preview" class="absolute inset-0 w-full h-full object-cover object-center z-0 select-none" />
         <div class="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(2,6,23,0.18)_0_1px,transparent_1px_16px)] opacity-30 z-10"></div>
       <?php else: ?>
         <div class="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(148,163,184,0.05)_0_1px,transparent_1px_16px)] opacity-50"></div>
@@ -47,7 +47,7 @@
     <?php $thumb = 'https://raw.githubusercontent.com/kbaraniak/kbdev/main/public/img/thumbnails/qr-shorter.jpeg'; ?>
     <div class="relative flex-shrink-0 h-[180px] overflow-hidden border-b border-slate-800 flex items-start justify-center <?php echo $thumb ? 'bg-slate-900/60' : 'bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800'; ?>">
       <?php if ($thumb): ?>
-        <img src="<?php echo $thumb; ?>" alt="qr-shorter preview" class="absolute inset-0 w-full h-full object-cover object-center z-0" />
+        <img src="<?php echo $thumb; ?>" alt="qr-shorter preview" class="absolute inset-0 w-full h-full object-cover object-center z-0 select-none" />
         <div class="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(2,6,23,0.18)_0_1px,transparent_1px_16px)] opacity-30 z-10"></div>
       <?php else: ?>
         <div class="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(148,163,184,0.05)_0_1px,transparent_1px_16px)] opacity-50"></div>
@@ -69,7 +69,7 @@
     <?php $thumb = 'https://raw.githubusercontent.com/kbaraniak/kbdev/main/public/img/thumbnails/kbdev.jpeg'; ?>
     <div class="relative flex-shrink-0 h-[180px] overflow-hidden border-b border-slate-800 flex items-start justify-center <?php echo $thumb ? 'bg-slate-900/60' : 'bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800'; ?>">
       <?php if ($thumb): ?>
-        <img src="<?php echo $thumb; ?>" alt="kbdev preview" class="absolute inset-0 w-full h-full object-cover object-center z-0" />
+        <img src="<?php echo $thumb; ?>" alt="kbdev preview" class="absolute inset-0 w-full h-full object-cover object-center z-0 select-none" />
         <div class="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(2,6,23,0.18)_0_1px,transparent_1px_16px)] opacity-30 z-10"></div>
       <?php else: ?>
         <div class="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(148,163,184,0.05)_0_1px,transparent_1px_16px)] opacity-50"></div>
