@@ -1,5 +1,5 @@
 <?php
-// Customizuj hero sekcję - możesz tu zmienić wartości
+// Sekcja hero
 $hero = [
   'eyebrow' => 'Portfolio Blueprint',
   'title' => 'Wybrane projekty, które pokazują realny warsztat.',
