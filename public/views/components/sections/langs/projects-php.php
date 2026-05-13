@@ -37,8 +37,8 @@
       <p class="text-xs leading-5 text-slate-300 flex-1">Gotowy produkt dla użytkownika końcowego z szybkim i stabilnym delivery.</p>
       <p class="font-mono text-xs font-medium leading-relaxed text-sky-300">PHP, Product Delivery, SEO Basics</p>
       <div class="flex gap-1">
-        <a href="#" class="flex-1 flex items-center justify-center rounded bg-slate-700 px-2 py-1 text-sm font-semibold text-white transition hover:bg-slate-600">Live Demo</a>
-        <a href="#" class="flex-1 flex items-center justify-center rounded border border-slate-700 bg-slate-950/70 px-2 py-1 text-xs font-semibold text-slate-200 transition hover:border-slate-600 hover:bg-slate-900">GitHub</a>
+       <!-- <a href="#" class="flex-1 flex items-center justify-center rounded bg-slate-700 px-2 py-1 text-sm font-semibold text-white transition hover:bg-slate-600">Live Demo</a> -->
+        <a href="https://github.com/klubuntu-backup1/odliczamydo" class="flex-1 flex items-center justify-center rounded border border-slate-700 bg-slate-950/70 px-2 py-1 text-xs font-semibold text-slate-200 transition hover:border-slate-600 hover:bg-slate-900">GitHub</a>
       </div>
     </div>
   </article>
